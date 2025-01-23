@@ -23,7 +23,13 @@ app.get("/", (req, res) => {
 	res.json({ message: "Hello" });
 });
 
-const PORT = process.env.PORT || 80;
-app.listen(PORT, () => {
-	console.log(`Server is running on port ${PORT}`);
-});
+// For local development
+if (process.env.NODE_ENV !== "production") {
+	const PORT = process.env.PORT || 80;
+	app.listen(PORT, () => {
+		console.log(`Server is running on port ${PORT}`);
+	});
+}
+
+// Export the Express API
+module.exports = app;
